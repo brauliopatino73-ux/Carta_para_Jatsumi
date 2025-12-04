@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carta para Jatsumi 🐟✨</title>
+<style>
+:root{
+  --bg-top:#c6f1ff;
+  --bg-mid:#7cc4e8;
+  --bg-deep:#244d7a;
+  --ink-soft:#4A3B47;
+  --accent:#F29BB2;
+  --paper:#FFF9F1;
+  --shine:#FFFFFFAA;
+  --fish-orange:#FF9F45;
+  --fish-orange-tail:#FF7A3C;
+  --fish-pink:#FF9BCF;
+  --fish-pink-tail:#F56CA8;
+  --fish-yellow:#FFE36A;
+  --fish-yellow-tail:#F2C542;
+}
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+
+/* Fondo bajo el agua */
+body{
+  font-family:"Georgia","Times New Roman",serif;
+  color:var(--ink-soft);
+  background:
+    radial-gradient(1300px 800px at 50% -10%, #ffffff 0, var(--bg-top) 28%, var(--bg-mid) 60%, var(--bg-deep) 100%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:16px;
+  overflow:hidden;
+  position:relative;
+}
+
+/* Luz del sol */
+.sun-rays{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+.sun-rays-inner{
+  position:absolute;
+  left:-10%;
+  top:-40%;
+  width:140%;
+  height:140%;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.45) 0, transparent 45%),
+    linear-gradient(135deg, rgba(255,255,255,.28) 0, transparent 40%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.6) 0, transparent 65%);
+  mix-blend-mode:screen;
+  opacity:0.6;
+  transform-origin:top center;
+  animation:rayDrift 22s ease-in-out infinite alternate;
+  transform:translate3d(0,0,0);
+}
+@keyframes rayDrift{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.65}
+  100%{transform:translate3d(0,40px,0) rotate(-3deg);opacity:.4}
+}
+
+/* Brillitos */
+.sparkles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.sparkles span{
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--shine);
+  box-shadow:0 0 8px rgba(255,255,255,.9);
+  opacity:0.8;
+  animation:twinkle 6s ease-in-out infinite;
+}
+.sparkles span:nth-child(1){top:18%;left:12%;animation-delay:0s}
+.sparkles span:nth-child(2){top:32%;left:76%;animation-delay:1s}
+.sparkles span:nth-child(3){top:52%;left:22%;animation-delay:2s}
+.sparkles span:nth-child(4){top:70%;left:64%;animation-delay:3s}
+.sparkles span:nth-child(5){top:14%;left:54%;animation-delay:1.4s}
+.sparkles span:nth-child(6){top:82%;left:30%;animation-delay:2.7s}
+.sparkles span:nth-child(7){top:60%;left:8%;animation-delay:3.3s}
+.sparkles span:nth-child(8){top:40%;left:90%;animation-delay:4.1s}
+@keyframes twinkle{
+  0%,100%{transform:scale(0.8);opacity:.2}
+  50%{transform:scale(1.3);opacity:.95}
+}
+
+/* Burbujas */
+.bubbles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.bubbles span{
+  position:absolute;
+  bottom:-10%;
+  width:10px;height:10px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.7);
+  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), transparent 60%);
+  opacity:.65;
+  animation:bubbleUp 16s linear infinite;
+}
+.bubbles span:nth-child(1){left:15%;animation-duration:17s;animation-delay:-3s;transform:scale(.8)}
+.bubbles span:nth-child(2){left:32%;animation-duration:18s;animation-delay:-6s;transform:scale(1)}
+.bubbles span:nth-child(3){left:48%;animation-duration:20s;animation-delay:-9s;transform:scale(1.2)}
+.bubbles span:nth-child(4){left:63%;animation-duration:19s;animation-delay:-4s;transform:scale(.9)}
+.bubbles span:nth-child(5){left:77%;animation-duration:21s;animation-delay:-11s;transform:scale(1.1)}
+.bubbles span:nth-child(6){left:25%;animation-duration:22s;animation-delay:-14s;transform:scale(.7)}
+.bubbles span:nth-child(7){left:55%;animation-duration:18s;animation-delay:-2s;transform:scale(1.3)}
+.bubbles span:nth-child(8){left:84%;animation-duration:20s;animation-delay:-7s;transform:scale(.95)}
+@keyframes bubbleUp{
+  0%{transform:translateY(0) scale(var(--s,1));opacity:0}
+  10%{opacity:.7}
+  80%{opacity:.8}
+  100%{transform:translateY(-120vh) scale(var(--s,1));opacity:0}
+}
+
+/* Corazones de burbujas */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+.heart{
+  position:absolute;
+  width:16px;height:16px;
+  transform:translate(-50%,-50%) scale(0);
+  opacity:0;
+  background:
+    radial-gradient(circle at 30% 30%, #ffe8f0 0, #ff8fb7 45%, #f25d8d 100%);
+  clip-path:path("M12 2 C10 -1, 6 -1, 4 2 C1 5, 1 9, 4 12 L8 16 L12 12 C15 9, 15 5, 12 2 Z");
+  animation:heartPop 4s ease-out infinite;
+}
+.heart:nth-child(1){left:20%;bottom:10%;animation-delay:-2s}
+.heart:nth-child(2){left:40%;bottom:5%;animation-delay:-4s}
+.heart:nth-child(3){left:60%;bottom:8%;animation-delay:-6s}
+.heart:nth-child(4){left:75%;bottom:12%;animation-delay:-3s}
+@keyframes heartPop{
+  0%{transform:scale(0) translateY(0);opacity:0}
+  20%{transform:scale(1) translateY(-10px);opacity:.95}
+  80%{transform:scale(1.1) translateY(-40px);opacity:.7}
+  100%{transform:scale(0.9) translateY(-70px);opacity:0}
+}
+
+/* Algas */
+.seaweed{
+  position:fixed;
+  left:0;right:0;bottom:0;
+  height:26vh;
+  pointer-events:none;
+  z-index:1;
+  display:flex;
+  justify-content:space-evenly;
+  align-items:flex-end;
+  padding:0 10px 0;
+}
+.seaweed .weed{
+  width:22px;
+  height:110px;
+  background:linear-gradient(180deg,#8ad38c,#2f7b4a);
+  border-radius:999px 999px 0 0;
+  transform-origin:bottom center;
+  opacity:.9;
+  animation:weedSway 9s ease-in-out infinite alternate;
+  filter:drop-shadow(0 -4px 10px rgba(0,0,0,.28));
+}
+.seaweed .weed:nth-child(2){height:130px;animation-duration:11s}
+.seaweed .weed:nth-child(3){height:100px;animation-duration:10s}
+.seaweed .weed:nth-child(4){height:140px;animation-duration:12s}
+.seaweed .weed:nth-child(5){height:90px;animation-duration:9.5s}
+.seaweed .weed:nth-child(6){height:120px;animation-duration:11.5s}
+@keyframes weedSway{
+  0%{transform:skewX(0deg);}
+  100%{transform:skewX(6deg);}
+}
+body.music-on .seaweed .weed{
+  animation-duration:7s;
+  filter:drop-shadow(0 -4px 14px rgba(0,0,0,.35));
+}
+
+/* Medusas rosas cute */
+.jellys{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.jelly{
+  position:absolute;
+  width:70px;height:70px;
+  border-radius:40px 40px 30px 30px;
+  background:radial-gradient(circle at 30% 20%, #ffe9fb 0, #ffb1df 45%, #f57ac0 100%);
+  opacity:.75;
+  animation:jellyFloat 32s ease-in-out infinite;
+}
+.jelly::before{
+  content:"";
+  position:absolute;
+  left:10px;right:10px;bottom:-22px;
+  height:26px;
+  background:
+    radial-gradient(circle at 0 0,#ffb9e3 0,transparent 55%),
+    radial-gradient(circle at 50% 0,#ffb9e3 0,transparent 55%),
+    radial-gradient(circle at 100% 0,#ffb9e3 0,transparent 55%);
+  opacity:.9;
+}
+.jelly::after{
+  content:"";
+  position:absolute;
+  left:12px;right:12px;bottom:-34px;
+  height:26px;
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(255,182,219,.95) 0 5px,
+      transparent 5px 8px);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+  opacity:.85;
+}
+.jelly:nth-child(1){left:12%;top:58%;animation-delay:-8s}
+.jelly:nth-child(2){left:78%;top:64%;animation-delay:-16s;transform:scale(1.1)}
+.jelly:nth-child(3){left:30%;top:72%;animation-delay:-4s;transform:scale(.9)}
+@keyframes jellyFloat{
+  0%{transform:translate3d(0,0,0) scale(1);opacity:.6}
+  50%{transform:translate3d(10px,-40px,0) scale(1.05);opacity:.95}
+  100%{transform:translate3d(-6px,0,0) scale(1);opacity:.7}
+}
+
+/* Peces normales */
+.fishes{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+.fish{
+  position:absolute;
+  width:56px;
+  height:32px;
+  filter:none;              /* sin rastro */
+}
+
+/* contenedor interno para poder voltear solo el pez */
+.fish-inner{
+  position:absolute;
+  inset:0;
+  transform-origin:center;
+}
+
+/* cuerpo / cola / ojo – por defecto mirando a la DERECHA */
+.fish-body{
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+}
+.fish-tail{
+  position:absolute;
+  left:-12px;                /* cola a la izquierda */
+  top:50%;
+  width:20px;
+  height:20px;
+  clip-path:polygon(0 0,100% 50%,0 100%);
+  transform:translateY(-50%);
+}
+.fish-eye{
+  position:absolute;
+  right:12px;               /* ojo hacia la derecha */
+  top:10px;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#fff;
+}
+.fish-eye::after{
+  content:"";
+  position:absolute;
+  inset:2px;
+  border-radius:50%;
+  background:#333;
+}
+
+/* Frases de los peces */
+.fish-label{
+  position:absolute;
+  left:50%;
+  top:-26px;
+  transform:translateX(-50%);
+  max-width:200px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.9);
+  font:600 10px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#5c4651;
+  box-shadow:0 4px 10px rgba(0,0,0,.22);
+  white-space:nowrap;
+}
+
+/* colores */
+.fish:nth-child(1) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #ffe8c1 0, var(--fish-orange) 40%, #ff8a3c 100%);
+}
+.fish:nth-child(1) .fish-tail{background:var(--fish-orange-tail);}
+.fish:nth-child(2) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #ffe0f3 0, var(--fish-pink) 45%, #f368a8 100%);
+}
+.fish:nth-child(2) .fish-tail{background:var(--fish-pink-tail);}
+.fish:nth-child(3) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #fff9d2 0, var(--fish-yellow) 40%, #f2c542 100%);
+}
+.fish:nth-child(3) .fish-tail{background:var(--fish-yellow-tail);}
+.fish:nth-child(4) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #f3e1ff 0, #c6a5ff 40%, #8b6fe8 100%);
+}
+.fish:nth-child(4) .fish-tail{background:#8b6fe8;}
+.fish:nth-child(5) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #e0f6ff 0, #6fd5ff 40%, #399acb 100%);
+}
+.fish:nth-child(5) .fish-tail{background:#399acb;}
+
+/* posiciones + dirección:
+   1,3,5 izq→der / 2,4 der→izq */
+.fish:nth-child(1){
+  top:18%;
+  left:-20%;
+  animation:swim-right 26s linear infinite;
+  animation-delay:-4s;
+}
+.fish:nth-child(2){
+  top:32%;
+  left:120%;
+  animation:swim-left 24s linear infinite;
+  animation-delay:-8s;
+}
+.fish:nth-child(3){
+  top:55%;
+  left:-22%;
+  animation:swim-right 28s linear infinite;
+  animation-delay:-12s;
+}
+.fish:nth-child(4){
+  top:70%;
+  left:120%;
+  animation:swim-left 25s linear infinite;
+  animation-delay:-16s;
+}
+.fish:nth-child(5){
+  top:40%;
+  left:-24%;
+  animation:swim-right 30s linear infinite;
+  animation-delay:-20s;
+}
+
+/* voltear solo el pez que va de derecha a izquierda */
+.fish:nth-child(2) .fish-inner,
+.fish:nth-child(4) .fish-inner{
+  transform:scaleX(-1);
+}
+
+/* trayectorias */
+@keyframes swim-right{
+  0%{left:-24%;}
+  50%{left:60%;}
+  100%{left:120%;}
+}
+@keyframes swim-left{
+  0%{left:120%;}
+  50%{left:40%;}
+  100%{left:-30%;}
+}
+
+/* TIBURONES – versión simplificada sin líneas raras */
+.sharks{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.shark{
+  position:absolute;
+  width:90px;
+  height:34px;
+  opacity:0.5;       /* más suaves */
+}
+.shark-body{
+  position:absolute;
+  inset:8px 10px;
+  background:#506884;
+  border-radius:30px 60px 18px 30px;
+}
+.shark-tail{
+  position:absolute;
+  left:-18px;
+  top:50%;
+  width:24px;height:28px;
+  background:#506884;
+  clip-path:polygon(0 0,100% 50%,0 100%);
+  transform:translateY(-50%);
+}
+.shark-fin{
+  position:absolute;
+  left:30px;top:-6px;
+  width:20px;height:18px;
+  background:#506884;
+  clip-path:polygon(0 100%,50% 0,100% 100%);
+}
+.shark-eye{
+  position:absolute;
+  right:26px;top:12px;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:#1a2430;
+}
+
+/* uno va de izq a der, otro al revés */
+.shark:nth-child(1){
+  bottom:24%;
+  left:-25%;
+  animation:shark-right 34s linear infinite;
+  animation-delay:-5s;
+}
+.shark:nth-child(2){
+  bottom:37%;
+  left:120%;
+  transform:scaleX(-1);
+  animation:shark-left 38s linear infinite;
+  animation-delay:-12s;
+}
+@keyframes shark-right{
+  0%{left:-25%;}
+  50%{left:55%;}
+  100%{left:120%;}
+}
+@keyframes shark-left{
+  0%{left:120%;}
+  50%{left:45%;}
+  100%{left:-30%;}
+}
+
+/* Pez especial que saluda – derecha a izquierda */
+.greeter-fish{
+  position:fixed;
+  right:-20%;
+  top:22%;
+  width:80px;
+  height:46px;
+  z-index:4;
+  pointer-events:none;
+  opacity:0;
+  transform:translateX(0) scaleX(-1);
+}
+.greeter-fish-body{
+  position:absolute;inset:0;border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, #fff7d6 0, #ffb36c 40%, #ff8e3a 100%);
+  box-shadow:0 8px 18px rgba(0,0,0,.38);
+}
+.greeter-fish-tail{
+  position:absolute;left:-18px;top:50%;width:26px;height:26px;
+  background:#ff8e3a;
+  clip-path:polygon(0 0,100% 50%,0 100%);
+  transform:translateY(-50%);
+}
+.greeter-fish-eye{
+  position:absolute;right:16px;top:14px;width:9px;height:9px;border-radius:50%;background:#fff;
+}
+.greeter-fish-eye::after{
+  content:"";position:absolute;inset:2px;border-radius:50%;background:#333;
+}
+.greeter-fish-bubble{
+  position:absolute;
+  left:6px;
+  top:-30px;
+  min-width:120px;
+  max-width:180px;
+  padding:6px 10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.9);
+  color:#5c4651;
+  font:600 11px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+}
+.greeter-fish-bubble::after{
+  content:"";
+  position:absolute;
+  right:18px;bottom:-10px;
+  width:16px;height:10px;
+  background:rgba(255,255,255,.9);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+}
+.greeter-fish.show{
+  animation:greeterSwim 7s ease-in-out forwards;
+}
+@keyframes greeterSwim{
+  0%{opacity:0;transform:translateX(0) scaleX(-1);}
+  10%{opacity:1;}
+  50%{transform:translateX(-140vw) scaleX(-1);}
+  85%{opacity:1;}
+  100%{opacity:0;transform:translateX(-150vw) scaleX(-1);}
+}
+
+/* Sobre / carta */
+.card-shell{
+  position:relative;
+  width:min(560px, 94vw);
+  height:min(380px, 64svh);
+  perspective:900px;
+  z-index:3;
+  transition:box-shadow .6s ease;
+}
+.card-shell.open-glow{
+  box-shadow:0 0 35px rgba(255,248,220,.55), 0 0 85px rgba(255,188,200,.35);
+}
+.env-back{
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  background:linear-gradient(145deg,#f5c7d8,#f7d3b5);
+  box-shadow:
+    0 20px 40px rgba(34,31,71,.45),
+    inset 0 1px 0 rgba(255,255,255,.7);
+}
+.env-flap{
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  background:linear-gradient(160deg,#f8d8e6,#fbe1c5);
+  clip-path:polygon(0 0,100% 0,50% 55%);
+  transform-origin:top center;
+  transform:rotateX(0deg);
+  transition:transform .7s ease;
+  box-shadow:inset 0 -1px 0 rgba(170,100,110,.35);
+  z-index:4;
+}
+.card-shell.open .env-flap{
+  transform:rotateX(185deg);
+}
+
+/* burst local */
+.burst{
+  position:absolute;
+  inset:-10%;
+  pointer-events:none;
+  z-index:5;
+  overflow:visible;
+}
+.burst-bubble{
+  position:absolute;
+  left:50%;top:55%;
+  width:12px;height:12px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.9);
+  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), transparent 60%);
+  opacity:0;
+}
+.card-shell.burst-on .burst-bubble{
+  animation:burstOut 1.4s ease-out forwards;
+}
+.burst-bubble:nth-child(1){transform:translate(-50%,-50%) translate(-10px,-10px);}
+.burst-bubble:nth-child(2){transform:translate(-50%,-50%) translate(12px,-6px);}
+.burst-bubble:nth-child(3){transform:translate(-50%,-50%) translate(-6px,12px);}
+.burst-bubble:nth-child(4){transform:translate(-50%,-50%) translate(4px,16px);}
+.burst-bubble:nth-child(5){transform:translate(-50%,-50%) translate(18px,4px);}
+@keyframes burstOut{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.4);}
+  20%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+  100%{opacity:0;transform:translate(-50%,-80%) scale(1.3);}
+}
+
+/* Carta interior */
+.letter{
+  position:absolute;
+  left:7%;
+  right:7%;
+  bottom:10%;
+  height:80%;
+  background:
+    linear-gradient(180deg, #fffdf8 0, var(--paper) 40%, #fff5ea 100%);
+  border-radius:16px;
+  padding:22px 22px 18px;
+  border:1px solid rgba(230,190,180,.8);
+  box-shadow:
+    0 12px 26px rgba(34,31,71,.45),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  overflow:auto;
+  transform:translateY(46%);
+  visibility:hidden;
+  opacity:0;
+  transition:
+    transform .8s cubic-bezier(.18,.78,.24,1),
+    visibility 0s linear .08s,
+    opacity .8s ease;
+}
+.card-shell.open .letter{
+  transform:translateY(-4%);
+  visibility:visible;
+  opacity:1;
+}
+.letter p{
+  font-size:18px;
+  line-height:1.7;
+  margin-bottom:.9em;
+  color:#5a4853;
+}
+.letter p:last-child{
+  margin-bottom:0;
+}
+.letter .firma{
+  margin-top:8px;
+  text-align:right;
+  color:#4c3b46;
+}
+.letter::-webkit-scrollbar{width:8px}
+.letter::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,#f4cfe5,#f2b3c4);
+  border-radius:999px;
+}
+
+/* Botón */
+.btn-toggle{
+  position:relative;
+  z-index:4;
+  margin-top:10px;
+  padding:11px 26px;
+  border-radius:999px;
+  background:var(--accent);
+  border:1px solid rgba(220,120,150,.8);
+  color:#fff;
+  font-weight:700;
+  letter-spacing:.4px;
+  cursor:pointer;
+  box-shadow:0 12px 22px rgba(220,120,150,.45);
+  transition:transform .08s ease, filter .16s ease;
+  min-width:130px;
+}
+.btn-toggle:hover{filter:brightness(1.06)}
+.btn-toggle:active{transform:translateY(1px)}
+
+/* Estado música */
+.music-status{
+  position:fixed;
+  left:14px;
+  bottom:14px;
+  z-index:10;
+  font:600 12px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#FDFBFF;
+  background:rgba(17,35,70,.55);
+  padding:6px 11px;
+  border-radius:999px;
+  border:1px solid rgba(163,192,255,.7);
+  backdrop-filter:blur(8px);
+}
+
+/* Botón auxiliar música */
+.music-helper{
+  position:fixed;
+  right:14px;
+  bottom:14px;
+  z-index:10;
+  padding:8px 13px;
+  border-radius:999px;
+  background:#F29BB2;
+  color:#fff;
+  border:1px solid rgba(210,120,145,.8);
+  box-shadow:0 10px 22px rgba(210,110,140,.45);
+  font:700 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
+  letter-spacing:.3px;
+  cursor:pointer;
+  display:none;
+}
+
+/* Reproductor de música */
+.music-player{
+  position:fixed;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(17,35,70,.78);
+  color:#fdfbff;
+  border:1px solid rgba(180,205,255,.85);
+  backdrop-filter:blur(10px);
+  font:500 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+.music-player-title{
+  max-width:150px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.music-player button{
+  border:none;
+  background:rgba(242,155,178,.96);
+  border-radius:999px;
+  padding:5px 8px;
+  cursor:pointer;
+  font-size:13px;
+  box-shadow:0 4px 10px rgba(0,0,0,.35);
+}
+.music-player button:active{
+  transform:translateY(1px);
+}
+.music-player select{
+  background:rgba(12,26,60,.9);
+  color:#fdfbff;
+  border-radius:999px;
+  border:1px solid rgba(180,205,255,.8);
+  padding:3px 6px;
+  font-size:12px;
+}
+
+/* Responsive */
+@media (max-width:480px){
+  .letter p{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fish,.jelly,.shark{animation:none}
+  .sparkles span{animation:none;opacity:.4}
+  .env-flap,.letter{transition:none}
+  .bubbles span{animation:none;opacity:.3}
+  .sun-rays-inner{animation:none;}
+  .seaweed .weed{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sun-rays" aria-hidden="true">
+  <div class="sun-rays-inner" id="sunRays"></div>
+</div>
+
+<div class="sparkles" aria-hidden="true">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<div class="bubbles" aria-hidden="true">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<div class="hearts" aria-hidden="true">
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+</div>
+
+<div class="seaweed" aria-hidden="true">
+  <div class="weed"></div>
+  <div class="weed"></div>
+  <div class="weed"></div>
+  <div class="weed"></div>
+  <div class="weed"></div>
+  <div class="weed"></div>
+</div>
+
+<div class="jellys" aria-hidden="true">
+  <div class="jelly"></div>
+  <div class="jelly"></div>
+  <div class="jelly"></div>
+</div>
+
+<div class="fishes" aria-hidden="true">
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">Eres super especial para mi ✨</div>
+  </div>
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">TQM 🫶🏻</div>
+  </div>
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">Me hace feliz que formes parte de mi vida</div>
+  </div>
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">Si fueras un agua, serias la natural por que no necesitas nada mas.</div>
+  </div>
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">Me encantan tus ojotes </div>
+  </div>
+</div>
+
+<!-- Tiburones al fondo -->
+<div class="sharks" aria-hidden="true">
+  <div class="shark">
+    <div class="shark-body"></div>
+    <div class="shark-tail"></div>
+    <div class="shark-fin"></div>
+    <div class="shark-eye"></div>
+  </div>
+  <div class="shark">
+    <div class="shark-body"></div>
+    <div class="shark-tail"></div>
+    <div class="shark-fin"></div>
+    <div class="shark-eye"></div>
+  </div>
+</div>
+
+<!-- Pez saludando (derecha a izquierda) -->
+<div class="greeter-fish" id="greeterFish" aria-hidden="true">
+  <div class="greeter-fish-body"></div>
+  <div class="greeter-fish-tail"></div>
+  <div class="greeter-fish-eye"></div>
+  <div class="greeter-fish-bubble">hola Jatsumi, abre bien la carta :3</div>
+</div>
+
+<div class="card-shell" id="cardShell">
+  <div class="env-back"></div>
+  <div class="env-flap"></div>
+
+  <div class="burst">
+    <div class="burst-bubble"></div>
+    <div class="burst-bubble"></div>
+    <div class="burst-bubble"></div>
+    <div class="burst-bubble"></div>
+    <div class="burst-bubble"></div>
+  </div>
+
+  <div class="letter">
+<p>Dear Jatsumi 💕</p>
+
+<p>
+  Espero que te encuentres bien mientras lees esta pequeña carta.  
+  Sé cuánto te gustan los peces y decidí poner un montón…
+</p>
+
+<p>
+  Bueno, quería decirte que te aprecio mucho. Desde que te conocí eres
+  una persona que vale muchísimo la pena conocer. Aunque no seamos nada,
+  yo sé que te quiero mucho. Me tratas súper bien, aunque no sueles ser
+  nada migajera, y también me encanta cuando me envías un buen de reels;
+  los veo en mi trayecto a mi casa después de la escuela y siempre me
+  alegras el día…
+</p>
+
+<p>
+  Realmente te hice esta carta porque te noté un poco triste, y no quiero
+  que estés así. Aunque no me quieras contar, te respeto muchísimo.
+  Sé que lo que puedes estar pasando no debe ser fácil y no quiero
+  presionarte con nada.  
+  Te quiero &lt;3
+</p>
+
+<p>
+  Podría decir mil cosas que quiero de ti, pero no quiero hacer esta carta
+  tan larga. Solo espero poder seguir estando a tu lado, aunque ni nos
+  podamos ver.
+</p>
+
+<p>
+   Te amok ❤️
+</P>
+
+
+<p class="firma">Yeshua P.</p>
+  </div>
+</div>
+
+<button class="btn-toggle" id="toggleBtn">Abrir carta</button>
+
+<!-- Reproductor para que ella elija canción -->
+<div class="music-player" id="musicPlayer">
+  <span class="music-player-title" id="trackTitle">
+    Love Dream (Sueño de Amor)
+  </span>
+  <button type="button" id="prevTrack">⏮</button>
+  <button type="button" id="playPause">⏯</button>
+  <button type="button" id="nextTrack">⏭</button>
+  <select id="trackSelect" aria-label="Elegir canción"></select>
+</div>
+
+<audio id="bgMusic" preload="auto" loop playsinline></audio>
+
+<script>
+const shell   = document.getElementById('cardShell');
+const btn     = document.getElementById('toggleBtn');
+const music   = document.getElementById('bgMusic');
+const greeter = document.getElementById('greeterFish');
+const sun     = document.getElementById('sunRays');
+
+const status = document.createElement('div');
+status.className='music-status';
+status.textContent='música: lista';
+document.body.appendChild(status);
+
+const helper = document.createElement('button');
+helper.className='music-helper';
+helper.textContent='🔊 activar música';
+document.body.appendChild(helper);
+
+helper.addEventListener('click', async () => {
+  try{
+    await music.play();
+    helper.style.display='none';
+    status.textContent='música: reproduciendo';
+    document.body.classList.add('music-on');
+  }catch(e){}
+});
+
+music.volume = 0.0;
+let fadeTimer = null;
+function fade(to=1.0,ms=900){
+  if(fadeTimer) cancelAnimationFrame(fadeTimer);
+  const start = music.volume;
+  const delta = to - start;
+  const t0 = performance.now();
+  const step = (t)=>{
+    const k = Math.min(1,(t-t0)/ms);
+    music.volume = +(start + delta*k).toFixed(3);
+    if(k < 1) fadeTimer = requestAnimationFrame(step);
+  };
+  fadeTimer = requestAnimationFrame(step);
+}
+
+let open = false;
+function updateBtn(){
+  btn.textContent = open ? 'Cerrar carta' : 'Abrir carta';
+}
+updateBtn();
+
+btn.addEventListener('click', async ()=>{
+  open = !open;
+  shell.classList.toggle('open', open);
+  updateBtn();
+
+  if(open){
+    shell.classList.add('open-glow','burst-on');
+    setTimeout(()=>shell.classList.remove('burst-on'),800);
+
+    greeter.classList.remove('show');
+    void greeter.offsetWidth;
+    greeter.classList.add('show');
+
+    try{
+      await music.play();
+      status.textContent='música: reproduciendo';
+      document.body.classList.add('music-on');
+      fade(1.0,900);
+    }catch(e){
+      helper.style.display='inline-block';
+      status.textContent='música: toque para activar';
+    }
+  }else{
+    shell.classList.remove('open-glow');
+    fade(0.0,700);
+    setTimeout(()=>{
+      music.pause();
+      status.textContent='música: pausada';
+      document.body.classList.remove('music-on');
+    },720);
+  }
+});
+
+/* ---- Playlist para que ella elija la música ---- */
+const trackTitle   = document.getElementById('trackTitle');
+const trackSelect  = document.getElementById('trackSelect');
+const prevBtn      = document.getElementById('prevTrack');
+const playPauseBtn = document.getElementById('playPause');
+const nextBtn      = document.getElementById('nextTrack');
+
+// Cambia los archivos a las canciones que tú tengas en /musiquita/
+const tracks = [
+  { title:'Love Dream (Sueño de Amor)', file:'musiquita/love_dream.mp3' },
+  { title:'Círculo de Amor',            file:'musiquita/circulo_de_amor.mp3' },
+  { title:'No Other Heart',             file:'musiquita/no_other_heart.mp3' }
+];
+
+let currentTrack = 0;
+
+function loadTrack(index){
+  if(!music || !tracks.length) return;
+  currentTrack = (index + tracks.length) % tracks.length;
+  music.src = tracks[currentTrack].file;
+  music.load();
+  if(trackTitle) trackTitle.textContent = tracks[currentTrack].title;
+  if(trackSelect) trackSelect.value = String(currentTrack);
+}
+
+// llenar el select
+if(trackSelect){
+  trackSelect.innerHTML = '';
+  tracks.forEach((t,i)=>{
+    const opt = document.createElement('option');
+    opt.value = String(i);
+    opt.textContent = t.title;
+    trackSelect.appendChild(opt);
+  });
+}
+
+// pista inicial
+loadTrack(0);
+
+// botones
+if(prevBtn){
+  prevBtn.addEventListener('click', async ()=>{
+    loadTrack(currentTrack - 1);
+    try{
+      await music.play();
+      document.body.classList.add('music-on');
+      status.textContent='música: reproduciendo';
+      fade(1.0,800);
+    }catch(e){}
+  });
+}
+if(nextBtn){
+  nextBtn.addEventListener('click', async ()=>{
+    loadTrack(currentTrack + 1);
+    try{
+      await music.play();
+      document.body.classList.add('music-on');
+      status.textContent='música: reproduciendo';
+      fade(1.0,800);
+    }catch(e){}
+  });
+}
+if(playPauseBtn){
+  playPauseBtn.addEventListener('click', async ()=>{
+    if(music.paused){
+      try{
+        await music.play();
+        document.body.classList.add('music-on');
+        status.textContent='música: reproduciendo';
+        fade(1.0,800);
+      }catch(e){}
+    }else{
+      fade(0.0,700);
+      setTimeout(()=>{
+        music.pause();
+        status.textContent='música: pausada';
+        document.body.classList.remove('music-on');
+      },720);
+    }
+  });
+}
+if(trackSelect){
+  trackSelect.addEventListener('change', async (e)=>{
+    const idx = parseInt(e.target.value,10) || 0;
+    loadTrack(idx);
+    try{
+      await music.play();
+      document.body.classList.add('music-on');
+      status.textContent='música: reproduciendo';
+      fade(1.0,800);
+    }catch(e){}
+  });
+}
+
+music.addEventListener('error',()=>{
+  status.textContent='música: no encontrada';
+});
+
+/* Luz del sol reacciona al mouse */
+window.addEventListener('mousemove', (e)=>{
+  const x = (e.clientX / window.innerWidth - 0.5) * 16;
+  const y = (e.clientY / window.innerHeight - 0.5) * 16;
+  sun.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+});
+</script>
+</body>
+</html>
